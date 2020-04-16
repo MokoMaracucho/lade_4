@@ -26,6 +26,11 @@
 			<form:password path="motDePasseNouvelUtilisateur" cssClass="form-control" />
 		</div>
 
+		<div class="form-group">
+			<label for="confirmationMotDePasseNouvelUtilisateur" class="text-light">Confirmation mot-de-passe</label>
+			<form:password path="confirmationMotDePasseNouvelUtilisateur" cssClass="form-control" />
+		</div>
+
 		<button type="submit" class="btn btn-success">S'inscrire</button>
 	</form:form>
 </div>

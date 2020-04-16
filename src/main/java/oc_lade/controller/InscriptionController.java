@@ -30,10 +30,11 @@ public class InscriptionController {
         // Implement business logic to save user details into a database
         // .....
 
-        System.out.println("Prénom : " 			+ inscriptionForm.getPrenomNouvelUtilisateur());
-        System.out.println("Nome : " 			+ inscriptionForm.getNomNouvelUtilisateur());
-        System.out.println("Émail : " 			+ inscriptionForm.getEmailNouvelUtilisateur());
-        System.out.println("Mot-de-passe : " 	+ inscriptionForm.getMotDePasseNouvelUtilisateur());
+        System.out.println("Prénom : " 						+ inscriptionForm.getPrenomNouvelUtilisateur());
+        System.out.println("Nome : " 						+ inscriptionForm.getNomNouvelUtilisateur());
+        System.out.println("Email : " 						+ inscriptionForm.getEmailNouvelUtilisateur());
+        System.out.println("Mot-de-passe : " 				+ inscriptionForm.getMotDePasseNouvelUtilisateur());
+        System.out.println("Confirmation mot-de-passe : " 	+ inscriptionForm.getConfirmationMotDePasseNouvelUtilisateur());
 
         model.addAttribute(ATT_MESSAGE, 			"Vous êtes inscrit !");
         model.addAttribute(ATT_INSCRIPTION_FORM, 	inscriptionForm);
