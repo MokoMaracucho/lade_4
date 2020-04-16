@@ -17,12 +17,12 @@
 		</div>
 
 		<div class="form-group">
-			<label for="emailNouvelUtilisateur" class="text-light">Émail : </label>
+			<label for="emailNouvelUtilisateur" class="text-light">Émail</label>
 			<form:input path="emailNouvelUtilisateur" cssClass="form-control" />
 		</div>
 
 		<div class="form-group">
-			<label for="motDePasseNouvelUtilisateur" class="text-light">Mot-de-passe : </label>
+			<label for="motDePasseNouvelUtilisateur" class="text-light">Mot-de-passe</label>
 			<form:password path="motDePasseNouvelUtilisateur" cssClass="form-control" />
 		</div>
 

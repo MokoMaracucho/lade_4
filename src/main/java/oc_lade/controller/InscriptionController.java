@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import oc_lade.form.InscriptionForm;
 
-
 @Controller
 public class InscriptionController {
 	
