@@ -16,43 +16,18 @@
 </head>
 
 <body>
-	<div class="container">
-		<div class="col-md-offset-2 col-md-7">
-			<form:form action="succesInscription" cssClass="form form-expand-lg form-dark bg-dark form-margin-padding form-border" method="post" modelAttribute="inscriptionForm">
-				<h1 class="font-weight-bold text-light">INSCRIPTION</h1>
+<!-- 	<header> -->
+<%-- 		<c:import url="include/navbar/jsp_navbar.jsp" ></c:import> --%>
+<!-- 	</header> -->
 
-				<div class="form-group">
-					<label for="prenomNouvelUtilisateur" class="text-light">Prénom : </label>
-<%-- 					<div class="small text-warning p-form-warning">${ traitementFormulaireInscription.erreursInscription['prenomUtilisateur'] }</div> --%>
-					<div class="col-md-9">
-						<form:input path="prenomNouvelUtilisateur" cssClass="form-control" />
-					</div>
+	<div class="div-container">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+					<c:import url="include/forms/formulaire_inscription.jsp" ></c:import>
 				</div>
-
-				<div class="form-group">
-					<label for="nomNouvelUtilisateur" class="text-light">Nom : </label>
-					<div class="col-md-9">
-						<form:input path="nomNouvelUtilisateur" cssClass="form-control" />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="emailNouvelUtilisateur" class="text-light">Émail : </label>
-					<div class="col-md-9">
-						<form:input path="emailNouvelUtilisateur" cssClass="form-control" />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="motDePasseNouvelUtilisateur" class="text-light">Mot-de-passe : </label>
-					<div class="col-md-9">
-						<form:password path="motDePasseNouvelUtilisateur" cssClass="form-control" />
-					</div>
-				</div>
-
-				<button type="submit" class="btn btn-success">S'inscrire</button>
-			</form:form>
-		</div>
+  			</div>
+	    </div>
 	</div>
 
 	<!-- CDN : JQuery / Popper.js / Bootstrap JS -->
