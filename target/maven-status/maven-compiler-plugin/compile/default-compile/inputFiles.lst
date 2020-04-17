@@ -1,4 +1,8 @@
 /Users/moko/spring-workspace/oc_lade/src/main/java/oc_lade/form/InscriptionForm.java
-/Users/moko/spring-workspace/oc_lade/src/main/java/oc_lade/config/SpringMVCFrontController.java
 /Users/moko/spring-workspace/oc_lade/src/main/java/oc_lade/config/AppConfig.java
 /Users/moko/spring-workspace/oc_lade/src/main/java/oc_lade/controller/InscriptionController.java
+/Users/moko/spring-workspace/oc_lade/src/main/java/oc_lade/model/Utilisateur.java
+/Users/moko/spring-workspace/oc_lade/src/main/java/oc_lade/model/Privilege.java
+/Users/moko/spring-workspace/oc_lade/src/main/java/oc_lade/config/SpringMvcFrontController.java
+/Users/moko/spring-workspace/oc_lade/src/main/java/oc_lade/controller/AccueilController.java
+/Users/moko/spring-workspace/oc_lade/src/main/java/oc_lade/controller/UtilisateurController.java
