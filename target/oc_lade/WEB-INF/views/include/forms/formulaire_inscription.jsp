@@ -7,7 +7,7 @@
 
 		<div class="form-group">
 	    	<label for="prenomUtilisateur" class="form-label-color">Prénom</label>
-            <form:errors path="prenomUtilisateur" cssClass="small text-warning p-form-warning" />
+            <form:errors path="prenomUtilisateur" class="small text-warning p-form-warning" />
 			<form:input path="prenomUtilisateur" cssClass="form-control" />
 		</div>
 

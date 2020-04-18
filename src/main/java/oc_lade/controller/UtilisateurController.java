@@ -1,48 +1,126 @@
 package oc_lade.controller;
 
+import java.util.List;
+import java.util.UUID;
+
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import oc_lade.model.Utilisateur;
+import oc_lade.exception.ResourceNotFoundException;
+import oc_lade.entity.Utilisateur;
+import oc_lade.service.UtilisateurService;
 
 @Controller
 @RequestMapping("/utilisateur")
 public class UtilisateurController {
-
+	
+//	public static final String ATT_MESSAGE 				= "message";
+//	public static final String ATT_INSCRIPTION_FORM		= "inscriptionForm";
+	
+	private static final Logger logger = LoggerFactory.getLogger(UtilisateurController.class);
+	
 	@InitBinder
-	public void ibnnitBinder(WebDataBinder webDataBinder) {
-		
-		StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
-		
-		webDataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
-	}
+    public void initBinder(WebDataBinder dataBinder) {
+        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+        dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+    }
 	
-	@RequestMapping("/inscription_2")
-	public String showForm(Model model) {
-		
-		model.addAttribute("utilisateur", new Utilisateur());
-		
-		return "inscription_2";
-	}
+	@Autowired
+	private UtilisateurService utilisateurService;
 	
-	@RequestMapping("/traitement_inscription_2")
-	public String traitementInscription(@Valid @ModelAttribute("utilisateur") Utilisateur utilisateur, BindingResult bindingResult) {
-		
-		if(bindingResult.hasErrors()) {
-			
-			return "inscription_2";
-		
-		} else {
-			
-			return "resultat_inscription_2";
-		}
-	}
+	@RequestMapping("/inscription_utilisateur")
+    public String inscriptionUtilisateur(Model model) {
+		logger.debug("Dans la méthode manipulant le formulaire d'inscription.");
+		Utilisateur utilisateur = new Utilisateur();
+		model.addAttribute("utilisateur", utilisateur);
+        return "inscription_utilisateur";
+    }
+
+    @PostMapping("/enregistrer_utilisateur")
+    public String enregistrerUtilisateur(@ModelAttribute("utilisateur") Utilisateur utilisateur, BindingResult theBindingResult) {
+        if (theBindingResult.hasErrors()) {
+            return "inscription_utilisateur";
+        } else {
+        	utilisateurService.enregistrerUtilisateur(utilisateur);
+            return "redirect:/utilisateur/liste_utilisateurs";
+        }
+    }
+	
+	@GetMapping("/liste_utilisateurs")
+    public String listeUtilisateurs(Model model) {
+        List<Utilisateur> listeUtilisateurs = utilisateurService.listeUtilisateurs();
+        model.addAttribute("listeUtilisateurs", listeUtilisateurs);
+        return "liste_utilisateurs";
+    }
+
+    @GetMapping("/maj_utilisateur")
+    public String majUtilisateur(@RequestParam("idUtilisateur") UUID idUtilisateur, Model model) throws ResourceNotFoundException {
+        Utilisateur utilisateur = utilisateurService.selectionnerUtilisateurParId(idUtilisateur);
+        model.addAttribute("utilisateur", utilisateur);
+        return "maj_utilisateur";
+    }
+
+    @GetMapping("/supprimer_utilisateur_par_id")
+    public String supprimerUtilisateur(@RequestParam("idUtilisateur") UUID idUtilisateur) throws ResourceNotFoundException {
+    	utilisateurService.supprimerUtilisateurParId(idUtilisateur);
+        return "redirect:/utilisateur/liste_utilisateurs";
+    }
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+//	@InitBinder
+//	public void initBinder(WebDataBinder webDataBinder) {
+//		
+//		StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+//		
+//		webDataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+//	}
+
+//    @PostMapping("/resultat_inscription")
+//    public String saveUtilisateur(@Valid @ModelAttribute("utilisateur") Utilisateur utilisateur, BindingResult bindingResult) {
+//
+//        System.out.println("FirstName : " 	+ utilisateur.getPrenomUtilisateur());
+//        System.out.println("LastName : " 	+ utilisateur.getNomUtilisateur());
+//        System.out.println("Username : " 	+ utilisateur.getEmailUtilisateur());
+//        System.out.println("Password : " 	+ utilisateur.getMotDePasseUtilisateur());
+//        System.out.println("Email : " 		+ utilisateur.getConfirmationMotDePasseUtilisateur());
+//
+//    	if(bindingResult.hasErrors()) {
+//
+//	        model.addAttribute("message", "L'inscription a échouée...");
+//	        model.addAttribute("utilisateur", utilisateur);
+//			
+//			return "inscription_utilisateur";
+//		
+//		} else {
+
+//	        model.addAttribute("message", "Vous êtes maintenant inscrit.");
+//	        model.addAttribute("utilisateur", utilisateur);
+//	        
+//			return "resultat_inscription_utilisateur";
+//		}
+//    }
 }
