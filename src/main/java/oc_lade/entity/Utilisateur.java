@@ -5,61 +5,62 @@ import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-//import javax.persistence.Column;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name="tb_utilisateur")
 public class Utilisateur {
 	
 	@Id
-//	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@NotBlank
-	@Column(name="id_utilisateur", length=30)
+	@NotNull
+	@GeneratedValue(generator="UUID")
+	@GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
+	@Column(name= "id_utilisateur", updatable=false)
 	private UUID idUtilisateur;
 	
-	@NotNull(message="Veuillez saisir un prénom.")
-    @Min(value = 1, message = "Veuillez saisir un prénom valide.")
-    @Max(value = 30, message = "Veuillez saisir un prénom valide.")
+//    @Min(value = 1, message = "Veuillez saisir un prénom valide.")
+//    @Max(value = 30, message = "Veuillez saisir un prénom valide.")
+	@NotNull
 	@Column(name="prenom_utilisateur")
 	private String prenomUtilisateur;
 	
-	@NotNull(message="Veuillez saisir un nom.")
-    @Min(value = 1, message = "Veuillez saisir un nom valide.")
-    @Max(value = 30, message = "Veuillez saisir un nom valide.")
+//    @Min(value = 1, message = "Veuillez saisir un nom valide.")
+//    @Max(value = 30, message = "Veuillez saisir un nom valide.")
+	@NotNull
 	@Column(name="nom_utilisateur", length=30)
 	private String nomUtilisateur;
 	
-	@NotNull(message="Veuillez saisir un email.")
-    @Email(message="Veuillez saisir un email valide.")
+//    @Email(message="Veuillez saisir un email valide.")
+	@NotNull
 	@Column(name="email_utilisateur", length=30, unique=true)
 	private String emailUtilisateur;
 	
-	@NotNull(message="Veuillez saisir un mot-de-passe.")
 //	@Pattern(regexp = "^[a-zA-Z0-9]{5}", message = "only 5 chars/digits")
+	@NotNull
 	@Column(name="mot_de_passe_utilisateur", length=30)
 	private String motDePasseUtilisateur;
 	
-	@NotNull(message="Veuillez confirmer le mot-de-passe.")
+	@NotNull
 	@Transient
     private String confirmationMotDePasseUtilisateur;
 
-	@NotBlank
+	@NotNull
+	@Enumerated(EnumType.STRING)
 	@Column(name="privilege_utilisateur", length=30)
 	private Privilege privilegeUtilisateur;
 	
-	@NotBlank
+	@NotNull
 	@Column(name="date_inscription_utilisateur")
 	private Timestamp dateInscriptionUtilisateur;
 	

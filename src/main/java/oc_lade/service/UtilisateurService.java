@@ -12,7 +12,7 @@ public interface UtilisateurService {
 
     public List<Utilisateur> listeUtilisateurs();
 
-    public Utilisateur selectionnerUtilisateurParId(UUID idUtilisateur) throws ResourceNotFoundException;
+//    public Utilisateur selectionnerUtilisateurParId(UUID idUtilisateur) throws ResourceNotFoundException;
 
-    public void supprimerUtilisateurParId(UUID idUtilisateur) throws ResourceNotFoundException;
+//    public void supprimerUtilisateurParId(UUID idUtilisateur) throws ResourceNotFoundException;
 }

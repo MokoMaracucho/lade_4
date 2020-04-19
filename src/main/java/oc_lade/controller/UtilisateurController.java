@@ -35,7 +35,9 @@ public class UtilisateurController {
 	
 	@InitBinder
     public void initBinder(WebDataBinder dataBinder) {
+		
         StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+        
         dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
 	
@@ -44,83 +46,57 @@ public class UtilisateurController {
 	
 	@RequestMapping("/inscription_utilisateur")
     public String inscriptionUtilisateur(Model model) {
+		
 		logger.debug("Dans la méthode manipulant le formulaire d'inscription.");
+		
 		Utilisateur utilisateur = new Utilisateur();
+		
 		model.addAttribute("utilisateur", utilisateur);
+		
         return "inscription_utilisateur";
     }
 
     @PostMapping("/enregistrer_utilisateur")
     public String enregistrerUtilisateur(@ModelAttribute("utilisateur") Utilisateur utilisateur, BindingResult theBindingResult) {
+    	
+    	System.out.println("Prénom : " 						+ utilisateur.getPrenomUtilisateur());
+    	System.out.println("Nom : " 						+ utilisateur.getNomUtilisateur());
+    	System.out.println("Email : " 						+ utilisateur.getEmailUtilisateur());
+    	System.out.println("Mot-de-passe : " 				+ utilisateur.getMotDePasseUtilisateur());
+    	System.out.println("Confirmation mot-de-passe : " 	+ utilisateur.getConfirmationMotDePasseUtilisateur());
+    	
         if (theBindingResult.hasErrors()) {
+        	
             return "inscription_utilisateur";
+            
         } else {
+        	
         	utilisateurService.enregistrerUtilisateur(utilisateur);
+        	
             return "redirect:/utilisateur/liste_utilisateurs";
         }
     }
 	
 	@GetMapping("/liste_utilisateurs")
     public String listeUtilisateurs(Model model) {
+		
         List<Utilisateur> listeUtilisateurs = utilisateurService.listeUtilisateurs();
+        
         model.addAttribute("listeUtilisateurs", listeUtilisateurs);
+        
         return "liste_utilisateurs";
     }
 
-    @GetMapping("/maj_utilisateur")
-    public String majUtilisateur(@RequestParam("idUtilisateur") UUID idUtilisateur, Model model) throws ResourceNotFoundException {
-        Utilisateur utilisateur = utilisateurService.selectionnerUtilisateurParId(idUtilisateur);
-        model.addAttribute("utilisateur", utilisateur);
-        return "maj_utilisateur";
-    }
+//    @GetMapping("/maj_utilisateur")
+//    public String majUtilisateur(@RequestParam("idUtilisateur") UUID idUtilisateur, Model model) throws ResourceNotFoundException {
+//        Utilisateur utilisateur = utilisateurService.selectionnerUtilisateurParId(idUtilisateur);
+//        model.addAttribute("utilisateur", utilisateur);
+//        return "maj_utilisateur";
+//    }
 
-    @GetMapping("/supprimer_utilisateur_par_id")
-    public String supprimerUtilisateur(@RequestParam("idUtilisateur") UUID idUtilisateur) throws ResourceNotFoundException {
-    	utilisateurService.supprimerUtilisateurParId(idUtilisateur);
-        return "redirect:/utilisateur/liste_utilisateurs";
-    }
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-//	@InitBinder
-//	public void initBinder(WebDataBinder webDataBinder) {
-//		
-//		StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
-//		
-//		webDataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
-//	}
-
-//    @PostMapping("/resultat_inscription")
-//    public String saveUtilisateur(@Valid @ModelAttribute("utilisateur") Utilisateur utilisateur, BindingResult bindingResult) {
-//
-//        System.out.println("FirstName : " 	+ utilisateur.getPrenomUtilisateur());
-//        System.out.println("LastName : " 	+ utilisateur.getNomUtilisateur());
-//        System.out.println("Username : " 	+ utilisateur.getEmailUtilisateur());
-//        System.out.println("Password : " 	+ utilisateur.getMotDePasseUtilisateur());
-//        System.out.println("Email : " 		+ utilisateur.getConfirmationMotDePasseUtilisateur());
-//
-//    	if(bindingResult.hasErrors()) {
-//
-//	        model.addAttribute("message", "L'inscription a échouée...");
-//	        model.addAttribute("utilisateur", utilisateur);
-//			
-//			return "inscription_utilisateur";
-//		
-//		} else {
-
-//	        model.addAttribute("message", "Vous êtes maintenant inscrit.");
-//	        model.addAttribute("utilisateur", utilisateur);
-//	        
-//			return "resultat_inscription_utilisateur";
-//		}
+//    @GetMapping("/supprimer_utilisateur_par_id")
+//    public String supprimerUtilisateur(@RequestParam("idUtilisateur") UUID idUtilisateur) throws ResourceNotFoundException {
+//    	utilisateurService.supprimerUtilisateurParId(idUtilisateur);
+//        return "redirect:/utilisateur/liste_utilisateurs";
 //    }
 }

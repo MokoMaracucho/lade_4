@@ -16,21 +16,21 @@ import oc_lade.entity.Utilisateur;
 @Repository("utilisateurRepository")
 public interface UtilisateurRepository extends JpaRepository<Utilisateur, UUID> {
 
-	@Override
-	<S extends Utilisateur> S save(S entity);
-
-	@Override
-	Optional<Utilisateur> findById(UUID id);
-
+//	@Override
+//	<S extends Utilisateur> S save(S entity);
+//
+//	@Override
+//	Optional<Utilisateur> findById(UUID id);
+//
 //	@Override
 //	boolean existsById(UUID id);
 //
 //	@Override
 //	long count();
-
-	@Override
-	void deleteById(UUID id);
-
+//
+//	@Override
+//	void deleteById(UUID id);
+//
 //	@Override
 //	void delete(Utilisateur entity);
 //
@@ -57,10 +57,10 @@ public interface UtilisateurRepository extends JpaRepository<Utilisateur, UUID> 
 //
 //	@Override
 //	List<Utilisateur> findAll();
-
-	@Override
-	List<Utilisateur> findAll(Sort sort);
-
+//
+//	@Override
+//	List<Utilisateur> findAll(Sort sort);
+//
 //	@Override
 //	List<Utilisateur> findAllById(Iterable<UUID> ids);
 //
