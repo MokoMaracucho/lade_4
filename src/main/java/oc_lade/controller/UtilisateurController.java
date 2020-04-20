@@ -65,6 +65,36 @@ public class UtilisateurController {
     	System.out.println("Mot-de-passe : " 				+ utilisateur.getMotDePasseUtilisateur());
     	System.out.println("Confirmation mot-de-passe : " 	+ utilisateur.getConfirmationMotDePasseUtilisateur());
     	
+//    	utilisateurService.traitementFormulaireInscription(utilisateur);
+    	
+//    	TraitementFormulaireInscription traitementFormulaireInscription = new TraitementFormulaireInscription();
+//		
+//		BN_Utilisateur nouvelUtilisateur = traitementFormulaireInscription.traitementFormulaireInscription(request);
+		
+//		HttpSession session = request.getSession();
+//		
+//		if(traitementFormulaireInscription.getErreursInscription().isEmpty()) {
+//			
+//			session.setAttribute(ATT_SESSION_UTILISATEUR, nouvelUtilisateur);
+//
+//	        response.sendRedirect(URL_ACCUEIL);
+//		
+//		} else {
+//			
+//			request.setAttribute(ATT_TRAITEMENT_FORMULAIRE_INSCRIPTION, traitementFormulaireInscription);
+//			request.setAttribute(ATT_NOUVEL_UTILISATEUR, 				nouvelUtilisateur);
+//			
+//			session.setAttribute(ATT_SESSION_UTILISATEUR, null);
+//			
+//			this.getServletContext().getRequestDispatcher(VUE_INSCRIPTION).forward(request, response);
+//		}
+    	
+    	
+    	
+    	
+    	
+    	
+    	
         if (theBindingResult.hasErrors()) {
         	
             return "inscription_utilisateur";
